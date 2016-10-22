@@ -1,7 +1,3 @@
-#include<iostream>
-#include<climits>
-using namespace std;
-
 class Solution {
 public:
     int Out_of_Limits(int toggle){
@@ -33,9 +29,3 @@ public:
         return y*toggle;
     }
 };
-
-int main()
-{
-  Solution S;
-  cout<<S.myAtoi("    10522545459")<<endl;
-}
