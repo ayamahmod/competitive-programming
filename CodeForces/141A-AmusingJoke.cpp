@@ -1,3 +1,4 @@
+//http://codeforces.com/problemset/problem/141/A
 #include <iostream>
 #include <string>
 #include <algorithm>
