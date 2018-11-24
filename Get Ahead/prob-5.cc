@@ -9,13 +9,13 @@
 // if a word is valid and isPrefix() to check if a string is a prefix of some valid word.
 // Test Cases
 // Note that there may be other valid answers.
-// For the grid below, the longest word is FAME
-// F X  I E
-// A M L  O
+// For the grid below, the longest word is EMBOIL
+// F X I E
+// A M L O
 // E W B X
-// A S T  U
-// For the grid below, the ongest word is EMBOIL
-// A  B C D
-// E  F G H
-// I   J K L
+// A S T U
+// For the grid below, the longest word is KNIFE
+// A B C D
+// E F G H
+// I J K L
 // M N O P

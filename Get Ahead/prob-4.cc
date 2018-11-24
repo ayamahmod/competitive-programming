@@ -11,3 +11,25 @@
 //
 // For array [2,4,2,1,10,6,10] the largest area is 18, with height 6 and width from indices 4 to 6.
 //
+
+int largestRectHistogram(vector<int> hist) {
+  int largestRect = 0, i = 0;
+  stack<int> st;
+  while(i < hist.size()) {
+    if(st.empty() || hist[st.top()] <= hist[i]) {
+      st.push(i);
+    } else {
+      int tp = st.top();
+      st.pop();
+      int w = st.empty() ? i:i-st.top()-1;
+      largestRect = max(largestRect, w*hist[tp]);
+    }
+  }
+  while(!st.empty()) {
+    int tp = st.top();
+    st.pop();
+    int w = st.empty() ? i:i-st.top()-1;
+    largestRect = max(largestRect, w*hist[tp]);
+  }
+  return largestRect;
+}
