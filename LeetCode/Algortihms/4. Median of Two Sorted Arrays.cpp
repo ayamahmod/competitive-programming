@@ -61,3 +61,44 @@ int main(){
   v2[0]=1;
   cout<<C.findMedianSortedArrays(v1,v2)<<endl;
 }
+
+////////////////////////////////////
+// A better solution
+
+class Solution {
+public:
+    /*
+     * @param A: An integer array
+     * @param B: An integer array
+     * @return: a double whose format is *.5 or *.0
+     */
+    double findMedianSortedArrays(vector<int> &A, vector<int> &B) {
+        // write your code here
+        return findMedian(A, B);
+    }
+
+    double findMedian(const vector<int> &a, const vector<int> &b) {
+        if(a.size() > b.size())
+            return findMedian(b, a);
+        int low = 0, hi = a.size(), i, j;
+        long median;
+        while(low <= hi) {
+            i = (low+hi)/2;
+            j = (a.size()+b.size()+1)/2 - i;
+            if(i<a.size() && j>0 && b[j-1] > a[i])
+                low = i+1;
+            else if(i>0 && j<b.size() && a[i-1]>b[j])
+                hi = i-1;
+            else {
+                if(i==0)
+                    median = b[j-1];
+                else median = max(a[i-1], b[j-1]);
+                break;
+            }
+        }
+        if((a.size()+b.size())%2)   return median;
+        if(i==a.size())     return (median + b[j])/2.0;
+        if(j==b.size())     return (median + a[i])/2.0;
+        return (median+min(a[i],b[j]))/2.0;
+    }
+};
