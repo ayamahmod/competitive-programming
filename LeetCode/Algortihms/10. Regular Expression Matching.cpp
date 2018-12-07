@@ -19,3 +19,38 @@ public:
         }
     }
 };
+
+// second Solution
+
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        return match(s, 0, p, 0);
+    }
+
+    bool matchChar(char c, char p) {
+        return p == '.' || c == p;
+    }
+
+    bool match(string& s, int s1, string& p, int s2) {
+        if(s1 >= s.size() && s2 >= p.size())    return true;
+        if(s2 >= p.size())    return false;
+        if(s1 >= s.size()) {
+            for(int i = s2; i < p.size(); i+=2) {
+                if(p[i+1] != '*') return false;
+            }
+            return true;
+        }
+        if(s2 < p.size()-1 && p[s2+1] == '*') { // wildcard matching
+            bool cond = match(s, s1, p, s2+2);
+            for(int i = s1; i < s.size() && matchChar(s[i], p[s2]) && !cond; ++i) {
+                cond |= match(s, i+1, p, s2+2);
+            }
+            return cond;
+        }else {
+            if(matchChar(s[s1], p[s2]))
+                return match(s, s1+1, p, s2+1);
+            return false;
+        }
+    }
+};
